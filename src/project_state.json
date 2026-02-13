@@ -1,12 +1,14 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "Website for uploading items to buy and sell with basic security features.",
+  "projectStateVersion": 7,
+  "summary": "Marketplace website (Meyouu) for uploading items to buy/sell with basic security features, expanding scope to include an Android app suitable for publishing on the Google Play Store.",
   "architectural_notes": [
-    "Requires user authentication/authorization to secure item uploads and buy/sell actions."
+    "Requires user authentication/authorization to secure item uploads and buy/sell actions.",
+    "Plan for a mobile app delivery approach (e.g., Android wrapper/PWA/TWA or native client) compatible with Google Play Store publishing requirements."
   ],
   "known_issues": [],
   "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- App icon in rounded-square style, warm amber/orange palette, simple marketplace mark (pwa-icon-192.dim_192x192.png)\n- App icon in rounded-square style, warm amber/orange palette, simple marketplace mark (pwa-icon-512.dim_512x512.png)\n- Monochrome maskable icon variant with bold simple mark (pwa-icon-maskable-512.dim_512x512.png)\n- Apple touch icon in the same style (apple-touch-icon.dim_180x180.png)",
   "existing_features": [
     {
       "id": "feature-implement-internet-identity-authentication-in-the-ui-and-require-users-to-be-signed-in-before-they-can-create-listings-edit-delete-their-own-listings-or-purchase-an-item",
@@ -71,6 +73,38 @@
         "REQ-10"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-progressive-web-app-pwa-support-for-meyouu-so-the-website-can-be-installed-on-android-and-used-in-a-standalone-app-like-mode",
+      "title": "Add Progressive Web App (PWA) support for Meyouu so the website can be installed on Android and used in a standalone app-like mode.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-and-include-play-store-suitable-pwa-icon-assets-and-wire-them-into-the-pwa-manifest-and-apple-touch-icon-where-applicable",
+      "title": "Create and include Play Store-suitable PWA icon assets and wire them into the PWA manifest (and apple-touch-icon where applicable).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-in-app-entry-point-for-users-to-install-the-app-on-android-e-g-an-install-app-button-link-in-an-appropriate-existing-ui-surface-with-user-facing-text-in-english",
+      "title": "Add a simple in-app entry point for users to install the app on Android (e.g., an \"Install app\" button/link in an appropriate existing UI surface) with user-facing text in English.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-repository-documentation-file-describing-how-to-publish-the-pwa-as-an-android-app-on-google-play-using-a-trusted-web-activity-twa-wrapper-including-required-app-settings-start-url-manifest-location-icons-and-high-level-steps",
+      "title": "Add a repository documentation file describing how to publish the PWA as an Android app on Google Play using a Trusted Web Activity (TWA) wrapper, including required app settings (start URL, manifest location, icons) and high-level steps.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -94,6 +128,12 @@
       "reqIds": [
         "REQ-3"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create an Android app version of the Meyouu marketplace website suitable for uploading to the Google Play Store.",
+      "reqIds": [],
       "status": "pending"
     }
   ],

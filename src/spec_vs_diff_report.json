@@ -1,25 +1,63 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T13:39:02.658Z",
-  "summary": "REQ-10 branding rename to “Meyouu” appears implemented in key user-facing locations shown in the diff: browser tab title, header logo alt text, footer copyright line, and browse/home hero alt text + main heading. One additional, unrequested change introduces UTM tracking/hostname-based identifier in the footer link. Cannot fully verify the “no remaining user-facing ‘Marketplace’” condition beyond the files shown, though asset filenames still include “marketplace-*” (not necessarily user-facing copy).",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-13T14:37:23.428Z",
+  "summary": "Diff adds core PWA pieces (manifest linked in index.html, service worker + offline fallback, and an in-app install button in the header) and adds a TWA/Play Store documentation file. However, required icon image assets themselves are not shown as added, and there’s no clear evidence that deep-link refreshes like /listing/:id are handled without a blank page in an installed PWA.",
+  "missing_requirements": [
     {
-      "description": "Added UTM tracking and dynamic hostname-based `appIdentifier` to the footer attribution link (caffeine.ai)",
-      "reason": "BuildRequest only asked to rename branding to “Meyouu” in user-facing app-name locations; adding analytics/referral tracking logic and query parameters is not requested and goes beyond simple text updates.",
+      "id": "REQ-11",
+      "requirement": "Existing routes (/, /listing/:id, /create, /my-listings) work when the app is launched from an installed icon (no blank page on refresh/deep link).",
+      "reason": "The diff shows manifest/service worker additions, but no evidence of SPA deep-link handling at the hosting/server level (e.g., rewrite all routes to index.html) or a service-worker app-shell fallback for navigation requests when online. Without that, refreshing /listing/:id can still 404/blank depending on deployment.",
       "evidence": [
-        "frontend/src/components/layout/Footer.tsx"
+        "frontend/public/service-worker.js",
+        "frontend/public/manifest.webmanifest",
+        "frontend/index.html"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "Create and include Play Store-suitable PWA icon assets (192x192, 512x512, maskable 512x512, apple-touch-icon 180x180) under frontend/public and reference them from the manifest/apple-touch-icon link.",
+      "reason": "The manifest and index.html reference the icon paths, but the diff summary does not show the actual PNG icon files being added under frontend/public (only manifest/offline/service worker/docs/components were added).",
+      "evidence": [
+        "frontend/public/manifest.webmanifest",
+        "frontend/index.html"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "requirement": "Repository documentation describing how to publish the PWA as an Android app on Google Play using a TWA wrapper, including high-level steps.",
+      "reason": "A doc file is added and contains the required values and 'what is/is not included', but the diff content is truncated mid-section (ends right after 'Option A: Bubblewrap CLI (Recommended)') so there isn’t sufficient evidence the high-level step-by-step instructions are actually present/completed.",
+      "evidence": [
+        "frontend/PWA_PLAY_STORE_TWA.md"
       ]
     }
   ],
-  "confidence": 0.74,
+  "hallucinated_features": [
+    {
+      "description": "Web App Manifest includes optional fields (categories, shortcuts, orientation) beyond the specified acceptance criteria.",
+      "reason": "REQ-11/REQ-12 require basic manifest fields and icons, but do not request shortcuts/categories/orientation additions.",
+      "evidence": [
+        "frontend/public/manifest.webmanifest"
+      ]
+    },
+    {
+      "description": "Offline page includes a styled full-page UI with gradients and a 'Try Again' button.",
+      "reason": "REQ-11 requires an offline fallback page/message but does not request a specific designed offline landing page.",
+      "evidence": [
+        "frontend/public/offline.html"
+      ]
+    }
+  ],
+  "confidence": 0.66,
   "changed_files": [
     "frontend-file-summaries.txt",
+    "frontend/PWA_PLAY_STORE_TWA.md",
     "frontend/index.html",
-    "frontend/src/components/layout/Footer.tsx",
+    "frontend/public/manifest.webmanifest",
+    "frontend/public/offline.html",
+    "frontend/public/service-worker.js",
     "frontend/src/components/layout/Header.tsx",
-    "frontend/src/pages/BrowseListingsPage.tsx",
+    "frontend/src/components/pwa/InstallPwaButton.tsx",
     "project_state.json"
   ]
 }

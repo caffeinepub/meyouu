@@ -1,38 +1,113 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Rename user-facing branding to “Meyouu”",
+  "title": "Add PWA support and Android install path for Meyouu (Play Store-ready via TWA)",
   "requirements": [
     {
-      "id": "REQ-10",
-      "summary": "Replace user-facing “Marketplace” branding with “Meyouu” across document title, header logo alt text, footer copyright, and browse/home hero banner alt text and headings.",
+      "id": "REQ-11",
+      "summary": "Add PWA manifest, service worker, offline fallback, and navigation handling so Meyouu can be installed and used in standalone mode on Android (including deep links).",
       "acceptanceCriteria": [
-        "Browser tab/title shows “Meyouu” (update frontend/index.html <title>).",
-        "Header branding uses “Meyouu” (e.g., logo alt text updated from “Marketplace” to “Meyouu”).",
-        "Footer copyright line shows “Meyouu” instead of “Marketplace”.",
-        "Browse/home page hero/banner image alt text and the main page heading/subheading reflect the “Meyouu” brand name.",
-        "No remaining user-facing occurrences of the old app name “Marketplace” used as the product/brand name (excluding generic uses of the word marketplace in descriptive sentences, if any are intentionally kept)."
+        "A Web App Manifest is added and linked from the HTML entry point, with name/short_name set to \"Meyouu\", display set to standalone (or equivalent), theme_color/background_color set, and icons configured.",
+        "A service worker is added and registered to enable basic offline support (at minimum: cache the app shell and show an offline fallback page/message when the network is unavailable).",
+        "The app can be installed from a supported Android browser (“Add to Home screen”) and launches in standalone mode with Meyouu branding.",
+        "Existing routes (/, /listing/:id, /create, /my-listings) work when the app is launched from an installed icon (no blank page on refresh/deep link)."
       ],
       "file_operations": [
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Update the HTML <title> to display “Meyouu” in the browser tab (remove the old “Marketplace” product branding from the title)."
+          "description": "Link the Web App Manifest, set theme-related meta tags, add an apple-touch-icon link, and register the service worker from the HTML entry point (no changes to immutable frontend/src/main.tsx)."
+        },
+        {
+          "path": "frontend/public/manifest.webmanifest",
+          "operation": "create",
+          "description": "Add a Meyouu Web App Manifest with name/short_name, standalone display mode, start_url/scope appropriate for SPA usage, theme_color/background_color, and icon/maskable icon declarations."
+        },
+        {
+          "path": "frontend/public/service-worker.js",
+          "operation": "create",
+          "description": "Implement a basic service worker that caches the app shell and key static assets, serves an offline fallback for failed navigations, and provides navigation handling so deep links resolve to the app shell when launched from the installed icon."
+        },
+        {
+          "path": "frontend/public/offline.html",
+          "operation": "create",
+          "description": "Create a simple offline fallback page/message for when the network is unavailable, to be used by the service worker."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add Play Store-suitable PWA icon assets (including maskable and Apple touch icon) and reference them from the manifest/HTML.",
+      "acceptanceCriteria": [
+        "All required icon files exist under frontend/public (or the project’s standard public assets path) and are referenced by the manifest.",
+        "Android install prompt uses the provided icons (192x192 and 512x512) without broken links.",
+        "No runtime console errors related to missing manifest/icon assets."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+          "operation": "create",
+          "description": "Add the required generated PWA icon asset (192x192) at the specified path for manifest usage."
+        },
+        {
+          "path": "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the required generated PWA icon asset (512x512) at the specified path for manifest usage."
+        },
+        {
+          "path": "frontend/public/assets/generated/pwa-icon-maskable-512.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the required generated maskable icon asset (512x512) at the specified path for manifest usage."
+        },
+        {
+          "path": "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+          "operation": "create",
+          "description": "Add the required generated Apple touch icon asset (180x180) at the specified path for index.html usage."
+        },
+        {
+          "path": "frontend/public/manifest.webmanifest",
+          "operation": "modify",
+          "description": "Wire the created icon assets into the manifest (including maskable purpose where applicable) using the exact generated file paths."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure apple-touch-icon and manifest references point to the exact generated icon file paths under frontend/public/assets/generated."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Add an in-app Android installation entry point (Install app button) that prompts install when supported, otherwise shows brief guidance in English.",
+      "acceptanceCriteria": [
+        "The UI provides a visible way to install the app when the browser supports installation; otherwise it shows brief guidance (English) for installing via browser menu.",
+        "The install UI does not block core marketplace flows (browse, listing detail, create, my listings, purchase)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/pwa/InstallPwaButton.tsx",
+          "operation": "create",
+          "description": "Create a small Install PWA UI component that listens for the browser install prompt availability, triggers the prompt when possible, and otherwise displays short English guidance for installing via the browser menu. Use existing shadcn-ui Button composition (do not modify files under frontend/src/components/ui). Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/components/layout/Header.tsx",
           "operation": "modify",
-          "description": "Update the header’s branding/logo alt text from “Marketplace” to “Meyouu” (keep the existing logo image path unchanged unless otherwise required)."
-        },
+          "description": "Wire the InstallPwaButton into the existing header navigation area so it is visible but unobtrusive and does not block core marketplace flows."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Add repository documentation describing how to publish Meyouu as an Android app on Google Play using a Trusted Web Activity (TWA) wrapper.",
+      "acceptanceCriteria": [
+        "A clear English README-style document exists in the repo describing the Play Store/TWA approach and the values to use for Meyouu (app name, start URL placeholder, package name placeholder).",
+        "The doc explicitly notes what is and is not produced by this project (e.g., the web/PWA assets are produced; Play Console listing and signing are external steps)."
+      ],
+      "file_operations": [
         {
-          "path": "frontend/src/components/layout/Footer.tsx",
-          "operation": "modify",
-          "description": "Update the footer copyright line to display “Meyouu” instead of “Marketplace”, ensuring only user-visible brand name text changes."
-        },
-        {
-          "path": "frontend/src/pages/BrowseListingsPage.tsx",
-          "operation": "modify",
-          "description": "Update the browse/home hero/banner image alt text and the main heading/subheading so they reflect the “Meyouu” brand name (remove user-facing “Marketplace” as the product/brand name)."
+          "path": "frontend/PWA_PLAY_STORE_TWA.md",
+          "operation": "create",
+          "description": "Add an English README-style document explaining the TWA approach for Google Play, including Meyouu values (app name), placeholders for start URL and package name, manifest location, icon requirements, and an explicit note about what this repo does/does not produce (PWA assets vs Play Console steps)."
         }
       ]
     }

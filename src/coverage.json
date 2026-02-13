@@ -1,44 +1,95 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T13:39:02.661Z",
+  "generatedAt": "2026-02-13T14:37:23.431Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 4,
+    "implemented": 4,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Update the website’s user-facing branding name to “Meyouu” wherever the app name is displayed (including the browser tab title, header logo alt text, footer copyright line, and homepage hero/banner alt text and headline).",
+        "id": "REQ-11",
+        "summary": "Add Progressive Web App (PWA) support for Meyouu so the website can be installed on Android and used in a standalone app-like mode.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/index.html",
-          "frontend/src/components/layout/Header.tsx",
-          "frontend/src/components/layout/Footer.tsx",
-          "frontend/src/pages/BrowseListingsPage.tsx"
+          "frontend/public/manifest.webmanifest",
+          "frontend/public/service-worker.js",
+          "frontend/public/offline.html"
         ],
         "matchedFiles": [
           "frontend/index.html",
-          "frontend/src/components/layout/Header.tsx",
-          "frontend/src/components/layout/Footer.tsx",
-          "frontend/src/pages/BrowseListingsPage.tsx"
+          "frontend/public/manifest.webmanifest",
+          "frontend/public/service-worker.js",
+          "frontend/public/offline.html"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Create and include Play Store-suitable PWA icon assets and wire them into the PWA manifest (and apple-touch-icon where applicable).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+          "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+          "frontend/public/assets/generated/pwa-icon-maskable-512.dim_512x512.png",
+          "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+          "frontend/public/manifest.webmanifest",
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+          "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+          "frontend/public/assets/generated/pwa-icon-maskable-512.dim_512x512.png",
+          "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+          "frontend/public/manifest.webmanifest",
+          "frontend/index.html"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Add a simple in-app entry point for users to install the app on Android (e.g., an \"Install app\" button/link in an appropriate existing UI surface) with user-facing text in English.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/pwa/InstallPwaButton.tsx",
+          "frontend/src/components/layout/Header.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/pwa/InstallPwaButton.tsx",
+          "frontend/src/components/layout/Header.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Add a repository documentation file describing how to publish the PWA as an Android app on Google Play using a Trusted Web Activity (TWA) wrapper, including required app settings (start URL, manifest location, icons) and high-level steps.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/PWA_PLAY_STORE_TWA.md"
+        ],
+        "matchedFiles": [
+          "frontend/PWA_PLAY_STORE_TWA.md"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
+    "frontend/PWA_PLAY_STORE_TWA.md",
     "frontend/index.html",
-    "frontend/src/components/layout/Footer.tsx",
+    "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+    "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+    "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+    "frontend/public/assets/generated/pwa-icon-maskable-512.dim_512x512.png",
+    "frontend/public/manifest.webmanifest",
+    "frontend/public/offline.html",
+    "frontend/public/service-worker.js",
     "frontend/src/components/layout/Header.tsx",
-    "frontend/src/pages/BrowseListingsPage.tsx",
+    "frontend/src/components/pwa/InstallPwaButton.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

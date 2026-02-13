@@ -6,7 +6,7 @@
   "frontend/src/components/auth/LoginButton.tsx": "Reusable login/logout button component with loading states and query cache clearing on logout.",
   "frontend/src/components/auth/AuthGate.tsx": "Authentication gate component that shows a sign-in prompt for unauthenticated users and renders children for authenticated users.",
   "frontend/src/components/layout/AppLayout.tsx": "Main layout wrapper component providing consistent header and footer across all pages.",
-  "frontend/src/components/layout/Header.tsx": "Application header with logo, navigation links, and login button; logo alt text updated to \"Meyouu\".",
+  "frontend/src/components/layout/Header.tsx": "Application header with logo, navigation links, PWA install button, and login button; responsive text labels hidden on small screens.",
   "frontend/src/components/layout/Footer.tsx": "Footer component with copyright notice showing \"Meyouu\" and attribution link to caffeine.ai with UTM tracking.",
   "frontend/src/components/states/QueryState.tsx": "Reusable component for handling loading, error, and empty states with consistent UI patterns including skeletons and alerts.",
   "frontend/src/components/listings/ListingCard.tsx": "Card component displaying listing preview with image placeholder, title, price, and status badge with hover effects.",
@@ -21,5 +21,10 @@
   "frontend/src/index.css": "Global styles with OKLCH-based warm amber/orange color system for light and dark modes, avoiding blue/purple palette.",
   "frontend/tailwind.config.js": "Tailwind configuration with custom color tokens, Inter font family, and extended theme settings for the marketplace design system.",
   "frontend/src/main.tsx": "Application entry point with QueryClientProvider, InternetIdentityProvider, ThemeProvider, and Toaster for notifications.",
-  "frontend/index.html": "HTML entry point with updated page title to \"Meyouu\" for browser tab display."
+  "frontend/index.html": "HTML entry point with PWA manifest link, theme meta tags, apple-touch-icon, and service worker registration script for offline support and installability.",
+  "frontend/public/manifest.webmanifest": "Web App Manifest defining Meyouu as a standalone PWA with icons, theme colors, shortcuts, and metadata for Android installation and Play Store readiness.",
+  "frontend/public/service-worker.js": "Service worker implementing network-first caching strategy with offline fallback, navigation handling for deep links, and static asset caching for app shell.",
+  "frontend/public/offline.html": "Standalone offline fallback page with Meyouu branding shown when network is unavailable, featuring retry button and user-friendly messaging.",
+  "frontend/src/components/pwa/InstallPwaButton.tsx": "PWA install button component that triggers browser install prompt when available or shows manual installation instructions dialog for Android/iOS browsers.",
+  "frontend/PWA_PLAY_STORE_TWA.md": "Comprehensive documentation explaining how to publish Meyouu to Google Play Store using TWA wrapper, including setup steps, requirements, and Meyouu-specific configuration values."
 }

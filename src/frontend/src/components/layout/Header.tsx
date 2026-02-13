@@ -1,6 +1,7 @@
 import { Link, useNavigate } from '@tanstack/react-router';
 import { Button } from '../ui/button';
 import LoginButton from '../auth/LoginButton';
+import InstallPwaButton from '../pwa/InstallPwaButton';
 import { useAuth } from '../../hooks/useAuth';
 import { Plus, Package } from 'lucide-react';
 
@@ -28,17 +29,18 @@ export default function Header() {
               <Button variant="ghost" asChild>
                 <Link to="/my-listings" className="gap-2">
                   <Package className="h-4 w-4" />
-                  My Listings
+                  <span className="hidden sm:inline">My Listings</span>
                 </Link>
               </Button>
               <Button asChild>
                 <Link to="/create" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Create Listing
+                  <span className="hidden sm:inline">Create</span>
                 </Link>
               </Button>
             </>
           )}
+          <InstallPwaButton />
           <LoginButton />
         </nav>
       </div>
