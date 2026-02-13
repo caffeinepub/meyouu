@@ -1,0 +1,39 @@
+{
+  "kind": "build_request",
+  "title": "Rename website branding to “Meyouu”",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "text": "Update the website’s user-facing branding name to “Meyouu” wherever the app name is displayed (including the browser tab title, header logo alt text, footer copyright line, and homepage hero/banner alt text and headline).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Name the website Meyouu"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Browser tab/title shows “Meyouu” (update frontend/index.html <title>).",
+        "Header branding uses “Meyouu” (e.g., logo alt text updated from “Marketplace” to “Meyouu”).",
+        "Footer copyright line shows “Meyouu” instead of “Marketplace”.",
+        "Browse/home page hero/banner image alt text and the main page heading/subheading reflect the “Meyouu” brand name.",
+        "No remaining user-facing occurrences of the old app name “Marketplace” used as the product/brand name (excluding generic uses of the word marketplace in descriptive sentences, if any are intentionally kept)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/components/ui (read-only).",
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx (immutable paths)."
+  ],
+  "nonGoals": [
+    "Do not change backend canister logic or data models.",
+    "Do not redesign the UI theme or layout beyond updating the app name text."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

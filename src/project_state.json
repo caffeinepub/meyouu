@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Website for uploading items to buy and sell with basic security features.",
+  "architectural_notes": [
+    "Requires user authentication/authorization to secure item uploads and buy/sell actions."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-implement-internet-identity-authentication-in-the-ui-and-require-users-to-be-signed-in-before-they-can-create-listings-edit-delete-their-own-listings-or-purchase-an-item",
+      "title": "Implement Internet Identity authentication in the UI and require users to be signed in before they can create listings, edit/delete their own listings, or purchase an item.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-core-marketplace-ui-a-browse-page-showing-all-listings-with-search-filter-and-an-item-detail-view-showing-title-description-price-seller-status-and-images",
+      "title": "Build the core marketplace UI: a browse page showing all listings with search/filter and an item detail view showing title, description, price, seller, status, and images.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-create-listing-flow-in-the-ui-that-allows-an-authenticated-user-to-add-a-new-item-with-title-description-price-and-images-and-persists-it-to-the-backend",
+      "title": "Add a “Create Listing” flow in the UI that allows an authenticated user to add a new item with title, description, price, and images, and persists it to the backend.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-my-listings-management-ui-for-authenticated-users-to-view-edit-and-delete-their-own-listings-with-backend-enforcement-of-ownership",
+      "title": "Add “My Listings” management UI for authenticated users to view, edit, and delete their own listings, with backend enforcement of ownership.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-purchase-flow-in-the-ui-for-authenticated-users-to-buy-an-available-listing-on-success-mark-it-sold-and-display-the-buyer-sold-state-in-the-ui",
+      "title": "Add a purchase flow in the UI for authenticated users to buy an Available listing; on success, mark it Sold and display the buyer/sold state in the UI.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-establish-a-coherent-visual-theme-colors-typography-layout-and-components-suitable-for-a-marketplace-and-apply-it-consistently-across-pages-and-states-empty-loading-error-avoid-a-blue-purple-primary-palette",
+      "title": "Establish a coherent visual theme (colors, typography, layout, and components) suitable for a marketplace and apply it consistently across pages and states (empty/loading/error). Avoid a blue/purple primary palette.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-custom-static-images-used-by-the-ui-logo-and-a-simple-hero-banner-illustration-and-render-them-from-frontend-static-assets-not-via-the-backend",
+      "title": "Generate and include custom static images used by the UI (logo and a simple hero/banner illustration) and render them from frontend static assets (not via the backend).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-website-s-user-facing-branding-name-to-meyouu-wherever-the-app-name-is-displayed-including-the-browser-tab-title-header-logo-alt-text-footer-copyright-line-and-homepage-hero-banner-alt-text-and-headline",
+      "title": "Update the website’s user-facing branding name to “Meyouu” wherever the app name is displayed (including the browser tab title, header logo alt text, footer copyright line, and homepage hero/banner alt text and headline).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a buy/sell marketplace website where users can upload items for sale and purchase items, with basic security (e.g., authentication and protected actions).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create backend data models and canister methods to support marketplace listings: create listing, list all listings, get listing by id, update listing, delete listing, and purchase (mark as sold and record buyer).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Enforce basic security/authorization rules in the backend using the caller Principal: only the seller can update or delete their own listings; only authenticated callers can create listings or purchase; purchasing is only allowed when the listing is Available; prevent a seller from purchasing their own item.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Meyouu",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

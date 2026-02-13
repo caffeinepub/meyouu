@@ -1,0 +1,25 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T13:39:02.658Z",
+  "summary": "REQ-10 branding rename to “Meyouu” appears implemented in key user-facing locations shown in the diff: browser tab title, header logo alt text, footer copyright line, and browse/home hero alt text + main heading. One additional, unrequested change introduces UTM tracking/hostname-based identifier in the footer link. Cannot fully verify the “no remaining user-facing ‘Marketplace’” condition beyond the files shown, though asset filenames still include “marketplace-*” (not necessarily user-facing copy).",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Added UTM tracking and dynamic hostname-based `appIdentifier` to the footer attribution link (caffeine.ai)",
+      "reason": "BuildRequest only asked to rename branding to “Meyouu” in user-facing app-name locations; adding analytics/referral tracking logic and query parameters is not requested and goes beyond simple text updates.",
+      "evidence": [
+        "frontend/src/components/layout/Footer.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/components/layout/Footer.tsx",
+    "frontend/src/components/layout/Header.tsx",
+    "frontend/src/pages/BrowseListingsPage.tsx",
+    "project_state.json"
+  ]
+}

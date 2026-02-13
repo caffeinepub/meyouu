@@ -1,0 +1,40 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Rename user-facing branding to “Meyouu”",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "summary": "Replace user-facing “Marketplace” branding with “Meyouu” across document title, header logo alt text, footer copyright, and browse/home hero banner alt text and headings.",
+      "acceptanceCriteria": [
+        "Browser tab/title shows “Meyouu” (update frontend/index.html <title>).",
+        "Header branding uses “Meyouu” (e.g., logo alt text updated from “Marketplace” to “Meyouu”).",
+        "Footer copyright line shows “Meyouu” instead of “Marketplace”.",
+        "Browse/home page hero/banner image alt text and the main page heading/subheading reflect the “Meyouu” brand name.",
+        "No remaining user-facing occurrences of the old app name “Marketplace” used as the product/brand name (excluding generic uses of the word marketplace in descriptive sentences, if any are intentionally kept)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the HTML <title> to display “Meyouu” in the browser tab (remove the old “Marketplace” product branding from the title)."
+        },
+        {
+          "path": "frontend/src/components/layout/Header.tsx",
+          "operation": "modify",
+          "description": "Update the header’s branding/logo alt text from “Marketplace” to “Meyouu” (keep the existing logo image path unchanged unless otherwise required)."
+        },
+        {
+          "path": "frontend/src/components/layout/Footer.tsx",
+          "operation": "modify",
+          "description": "Update the footer copyright line to display “Meyouu” instead of “Marketplace”, ensuring only user-visible brand name text changes."
+        },
+        {
+          "path": "frontend/src/pages/BrowseListingsPage.tsx",
+          "operation": "modify",
+          "description": "Update the browse/home hero/banner image alt text and the main heading/subheading so they reflect the “Meyouu” brand name (remove user-facing “Marketplace” as the product/brand name)."
+        }
+      ]
+    }
+  ]
+}

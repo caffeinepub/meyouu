@@ -1,0 +1,28 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-website-s-user-facing-branding-name-to-meyouu-wherever-the-app-name-is-displayed-including-the-browser-tab-title-header-logo-alt-text-footer-copyright-line-and-homepage-hero-banner-alt-text-and-headline",
+      "featureTitle": "Update the website’s user-facing branding name to “Meyouu” wherever the app name is displayed (including the browser tab title, header logo alt text, footer copyright line, and homepage hero/banner alt text and headline).",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/layout/Footer.tsx",
+        "frontend/src/components/layout/Header.tsx",
+        "frontend/src/pages/BrowseListingsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
